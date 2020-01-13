@@ -15,6 +15,11 @@ See the full documentation [here](https://docs.geospark.co/cordova).
 cordova plugin add https://github.com/tbs-arpit/geospark-plugin-android.git
 ```
 
+* Update Your PUBLISH KEY in `plugins/cordova-plugin-geospark/src/android/GeoSparkPlugin.java` and `platforms/android/*/GeoSparkPlugin.java`:
+```
+ GeoSpark.initialize(application, "YOUR-PUBLISHABLE-KEY");
+```
+
 ## Prerequisites (Android)
 * Platform >= 8.1.0
 * Gradle version >= 5.4.1
