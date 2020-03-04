@@ -6,21 +6,17 @@
 
 #### This one is updated from [cordova-plugin-geospark](https://www.npmjs.com/package/cordova-plugin-geospark)
 
-## Documentation
-
-See the full documentation [here](https://docs.geospark.co/cordova).
-
 ## Add Plugin
 ```
 cordova plugin add https://github.com/tbs-arpit/geospark-plugin-android.git
 ```
 
+### Android Configurations
+
 * Update Your PUBLISH KEY in `plugins/cordova-plugin-geospark/src/android/GeoSparkPlugin.java` and `platforms/android/*/GeoSparkPlugin.java`:
 ```
  GeoSpark.initialize(application, "YOUR-PUBLISHABLE-KEY");
 ```
-
-## Prerequisites (Android)
 * Platform >= 8.1.0
 * Gradle version >= 5.4.1
 * MinSdkVersion >= 21
@@ -53,6 +49,49 @@ public class MainActivity extends CordovaActivity {
     }
 }
 ```
+
+### iOS Configurations
+
+* Add pod detail into `platforms\ios\PodFile`
+```
+pod 'GeoSpark'
+```
+* Install pods in `platforms\ios`, using following command
+```
+pod install
+```
+* Add privacy strings in Info.plist for Location Always and When In Use Usage, Location Always Usage,Loation Usage, Motion Usage, Location When In Use Usage
+
+* Then, in your project settings, go to `Capabilities > Background Modes` and turn on background fetch, location updates, remote-notifications.
+
+* Add followings in your `AppDelegate.swift`(for Swift platform) of `AppDelegate.h`(for objC platform)
+```
+//for Swift
+import GeoSpark
+
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    GeoSpark.intialize("PUBLISHABLEKEY")
+        return true
+  }
+```
+
+```
+//for objC
+#import <GeoSpark/GeoSpark.h>   // Add this line into AppDelegate.h
+
+//Add these code to AppDelegate.m
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [GeoSpark intialize:@"PUBLISHABLEKEY"];
+    return YES;
+}
+```
+
+### More Details
+* See the full documentation [GeoSpark-Cordova](https://docs.geospark.co/cordova).
+* Checkout more details form [GeoSpark Quick-Start](https://docs.geospark.co/getting-started)
+
 
 ## Support
 
